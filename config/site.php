@@ -1,0 +1,8 @@
+<?php 
+#### WEBSITE CONFIGURATIONS ####
+$GLOBALS['CURRENCY'] = "$" ;
+
+#### UPLOAD DIRECTORIES ####
+### ADMINS IMAGE DIRECTORY
+$GLOBALS['ADMINS_DIRECTORY'] = "public/uploads/admins/";
+?>
