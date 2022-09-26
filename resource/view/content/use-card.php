@@ -102,7 +102,7 @@ if(isset($_POST['try_card']))
                             <div class="form-group ">
                                 <label for="Amount" class="control-label col-lg-2">Amount</label>
                                 <div class="col-lg-7">
-                                    <input name="amount" type="number" class="form-control" id="amount" placeholder="Order no" required>
+                                    <input name="amount" type="number" class="form-control" id="amount" placeholder="Amount" required>
                                 </div>
                             </div>
 
