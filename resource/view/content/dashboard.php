@@ -16,7 +16,17 @@
    /*echo "<pre>";
    print_r($todayleads);
    echo "</pre>";*/
-   
+   $columnName = "*";
+   $tableName = "card_activation";
+   $activeResult = $eloquent->selectData($columnName, $tableName);
+   $totalActives = count($activeResult);
+
+   $columnName = $tableName = null;
+   $columnName["1"] = "id";
+   $tableName = "use_a_card";
+   $orderResult = $eloquent->selectData($columnName, $tableName);
+   $totalOrder = count($orderResult);		
+
    
    
    ?>
@@ -34,7 +44,7 @@
             </div>
             <div class="panel-body">
                <h4>
-
+                   <?= $totalActives ?>
                </h4>
             </div>
          </div>
@@ -58,7 +68,7 @@
             </div>
             <div class="panel-body">
                <h4>
-
+               <?= $totalOrder ?>
                </h4>
             </div>
          </div>

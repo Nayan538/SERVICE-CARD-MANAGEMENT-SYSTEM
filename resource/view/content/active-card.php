@@ -8,9 +8,20 @@ include("app/Models/Eloquent.php");
 # CALLING MODEL / QUERY BUILDER
 $eloquent = new Eloquent;
 
+error_reporting(E_ERROR | E_PARSE);
+
 # SAVE CUSTOMER #
 if(isset($_POST['try_activation']))
 {
+    $columnName = "*";
+    $tableName = "add_card";
+    $whereValue["card_no"] = $_POST['card_no'];
+    $cardResult = $eloquent->selectData($columnName, $tableName,$whereValue);
+    $totalCard = count($cardResult);
+
+    if($totalCard != 0)
+    {
+    $tableName = $columnValue = $whereValue = NULL;
 	$tableName = "card_activation";
 	$columnValue["card_no"] = $_POST['card_no'];
 	$columnValue["customer_name"] = $_POST['customer_name'];
@@ -18,6 +29,11 @@ if(isset($_POST['try_activation']))
 	$columnValue["activation_date"] = date("Y-m-d H:i:s");
 	$columnValue["activated_by"] = $_SESSION['SMC_login_admin_name'];
 	$saveActivation = $eloquent->insertData($tableName, $columnValue);
+    }
+    else
+    {
+        echo "<div class='alert alert-danger'><b>Card Number not valid! Please recheck Card Number.</b></div>";
+    }
 }
 
 

@@ -8,10 +8,11 @@ include("app/Models/Eloquent.php");
 # CALLING MODEL / QUERY BUILDER
 $eloquent = new Eloquent;
 
+
 # SAVE CUSTOMER #
 if(isset($_POST['try_card']))
-{
-	$tableName = "use_a_card";
+{  
+    $tableName = "use_a_card";
 	$columnValue["use_card_no"] = $_POST['use_card_no'];
 	$columnValue["card_user_name"] = $_POST['card_user_name'];
 	$columnValue["card_user_mobile_no"] = $_POST['card_user_mobile_no'];

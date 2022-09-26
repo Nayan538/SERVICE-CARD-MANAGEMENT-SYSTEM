@@ -8,6 +8,8 @@ include("app/Models/Eloquent.php");
 # CALLING MODEL / QUERY BUILDER
 $eloquent = new Eloquent;
 
+error_reporting(E_ERROR | E_PARSE);
+
 if(isset($_POST['search_card']))
 {
     $columnName = "*";
@@ -47,6 +49,7 @@ if(isset($_POST['search_card']))
                         <form class="cmxform form-horizontal" method="post" action="" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="col-lg-6">
+
                                 </div>
                                 <label for="CardNo" class="control-label col-lg-2">Card Number</label>
                                 <div class="col-lg-3">
@@ -55,13 +58,16 @@ if(isset($_POST['search_card']))
                                     <button name="try_search_card" type="submit" class="btn btn-success">Search</button>
                             </div>
                             <div class="form-group">
-                         <br/>
+                                <label for="CustomerName" class="control-label col-lg-2">Card No</label>
+                                <div class="col-lg-4">
+                                    <label for="CustomerName" class="control-label col-lg-2"><?php echo $activationResult[0]['card_no']?> </label> 
+                                </div>
                             </div>
-                        
+                            
                             <div class="form-group">
                                 <label for="CustomerName" class="control-label col-lg-2">Customer Name</label>
                                 <div class="col-lg-4">
-                                    <input name="customer_name" type="text" class="form-control" id="customer_name" value="<?= $activationResult[0]['customer_name']; ?>">
+                                    <input name="customer_name" type="text" class="form-control" id="customer_name" value="<?php echo $activationResult[0]['customer_name']?>">
                                 </div>
                                 <label for="noReferrer" class="control-label col-lg-2">No. Of Referrer</label>
                                 <div class="col-lg-4">
@@ -75,7 +81,7 @@ if(isset($_POST['search_card']))
                                 </div>
                                 <label for="Balance" class="control-label col-lg-2">Balance</label>
                                 <div class="col-lg-4">
-                                    <input name="balance" type="text" class="form-control" id="balance">
+                                    <input name="balance" type="text" class="form-control" id="balance" value="<?= $totalCustomer*50 ?>">
                                 </div>
                             </div>
 

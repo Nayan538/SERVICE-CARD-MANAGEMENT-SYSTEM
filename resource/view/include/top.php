@@ -63,18 +63,7 @@
 						<li><a href="dashboard.php"><i class="fa fa-home"></i> <span><b>DASHBOARD</b></span></a> </li>
 						
 						<?php 
-							if($_SESSION['SMC_login_admin_type'] == "Root Admin" || $_SESSION['SMC_login_admin_type'] == "Technical Operator")
-							{
-								echo '
-								<li class="menu-list"><a href="#"><i class="fa fa-user"></i> <span><b>MANAGE ADMINS</b></span></a>
-								<ul class="sub-menu-list">
-								<li><a href="create-admin.php"><i class="fa fa-plus-circle"></i><b> Create Admin </b></a></li>
-								<li><a href="list-admin.php"><i class="fa fa-users"></i> <b>List Admin</b></a></li>
-								</ul>
-								</li>
-								';
-							}
-
+							
 							if($_SESSION['SMC_login_admin_type'] == "Root Admin" || $_SESSION['SMC_login_admin_type'] == "Sales Manager")
 							{
 								echo '
@@ -109,13 +98,25 @@
 								</li>
 								';
 							}
-
+							if($_SESSION['SMC_login_admin_type'] == "Root Admin" || $_SESSION['SMC_login_admin_type'] == "Technical Operator")
+							{
+								echo '
+								<li class="menu-list"><a href="#"><i class="fa fa-user"></i> <span><b>USERS</b></span></a>
+								<ul class="sub-menu-list">
+								<li><a href="create-admin.php"><i class="fa fa-plus-circle"></i><b> Create Users </b></a></li>
+								<li><a href="list-admin.php"><i class="fa fa-users"></i> <b>List Users</b></a></li>
+								</ul>
+								</li>
+								';
+							}
 							if($_SESSION['SMC_login_admin_type'] == "Root Admin" || $_SESSION['SMC_login_admin_type'] == "Sales Manager")
 							{
 								echo '
-								<li class="menu-list"><a href="#"><i class="fa fa-users"></i> <span><b>SETTINGS</b></span></a>
+								<li class="menu-list"><a href="#"><i class="fa fa-cogs"></i> <span><b>SETTINGS</b></span></a>
 								<ul class="sub-menu-list">
-								<li><a href="Settings.php">Settings  </a></li>
+								<li><a href="add-card.php">Add Card</a></li>
+								<li><a href="list-card.php">List Card</a></li>
+								<li><a href="Settings.php">Settings</a></li>
 								</ul>
 								</li>
 								';
