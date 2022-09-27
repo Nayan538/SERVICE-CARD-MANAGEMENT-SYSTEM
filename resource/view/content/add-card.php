@@ -47,7 +47,7 @@ if(isset($_POST["submit_card"])){
 							{
 								echo '
 									<div class="alert alert-success">
-										 Successfully Upload the Cards Number. 
+										 Add New Card Number. 
 									</div>
 								';
 							}

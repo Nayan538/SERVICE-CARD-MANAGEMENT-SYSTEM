@@ -91,11 +91,11 @@ $adminList = $adminCtrl->listAdminData();
 							<thead>
 								<tr>
 									<th style="width: 5%"> ID </th>
-									<th style="width: 22%"> Admin Name </th>
-									<th style="width: 20%"> Admin Email </th>
-									<th style="width: 10%"> Admin Image </th>
-									<th style="width: 18%"> Admin Type </th>
-									<th style="width: 10%"> Admin Status </th>
+									<th style="width: 22%"> Users Name </th>
+									<th style="width: 20%"> Users Email </th>
+									<th style="width: 10%"> Users Image </th>
+									<th style="width: 18%"> Users Type </th>
+									<th style="width: 10%"> Users Status </th>
 									<th style="width: 15%" class="hidden-phone"> Action </th>
 								</tr>
 							</thead>
@@ -162,11 +162,11 @@ $adminList = $adminCtrl->listAdminData();
 							<tfoot>
 								<tr>
 									<th> ID </th>
-									<th> Admin Name </th>
-									<th> Admin Email </th>
-									<th> Admin Image </th>
-									<th> Admin Type </th>
-									<th> Admin Status </th>
+									<th> Users Name </th>
+									<th> Users Email </th>
+									<th> Users Image </th>
+									<th> Users Type </th>
+									<th> Users Status </th>
 									<th> Action </th>
 								</tr>
 							</tfoot>

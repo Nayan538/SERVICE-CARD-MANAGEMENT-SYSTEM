@@ -71,29 +71,29 @@ if( isset($_POST['create_admin']) )
 					<div class="form">
 						<form class="cmxform form-horizontal" method="post" action="" enctype="multipart/form-data">
 							<div class="form-group ">
-								<label for="AdminName" class="control-label col-lg-2"> Admin Name </label>
+								<label for="AdminName" class="control-label col-lg-2"> User Name </label>
 								<div class="col-lg-7">
 									<input class=" form-control" name="admin_name" type="text" required />
 								</div>
 							</div>
 							<div class="form-group ">
-								<label for="AdminEmail" class="control-label col-lg-2"> Admin Email </label>
+								<label for="AdminEmail" class="control-label col-lg-2"> Email </label>
 								<div class="col-lg-7">
 									<input class="form-control "name="admin_email" type="email" autocomplete="none" required />
 								</div>
 							</div>
 							<div class="form-group ">
-								<label for="AdminPassword" class="control-label col-lg-2"> Admin Password </label>
+								<label for="AdminPassword" class="control-label col-lg-2"> Password </label>
 								<div class="col-lg-7">
 									<input class="form-control" name="admin_password" type="password" autocomplete="none" required />
 								</div>
 							</div>
 							<div class="form-group ">
-								<label for="AdminType" class="control-label col-lg-2"> Admin Type </label>
+								<label for="AdminType" class="control-label col-lg-2"> User Type </label>
 								<div class="col-lg-7">
 									<select name="admin_type" class="form-control">
 										<option value="">Select a Type</option>
-										<option value="Root Admin"> Root Admin </option>
+										<option value="Root Admin"> Root Users </option>
 										<option value="Content Manager"> Content Manager </option>
 										<option value="Sales Manager"> Sales Manager </option>
 										<option value="Technical Operator"> Technical Operator </option>
@@ -101,7 +101,7 @@ if( isset($_POST['create_admin']) )
 								</div>
 							</div>							
 							<div class="form-group ">
-								<label for="AdminStatus" class="control-label col-lg-2"> Admin Status </label>
+								<label for="AdminStatus" class="control-label col-lg-2"> User Status </label>
 								<div class="col-lg-7">
 									<select name="admin_status" class="form-control m-bot15">
 										<option value="Active"> Active </option>
@@ -110,7 +110,7 @@ if( isset($_POST['create_admin']) )
 								</div>
 							</div>
 							<div class="form-group">
-							<label class="control-label col-md-2 "> Admin Image </label>
+							<label class="control-label col-md-2 "> User Image </label>
 							<div class="controls col-md-9">
 								<div class="fileupload fileupload-new" data-provides="fileupload">
 									<span class="btn btn-default btn-file">
@@ -122,7 +122,7 @@ if( isset($_POST['create_admin']) )
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-2">Admin Image Preview</label>
+							<label class="control-label col-md-2">User Image Preview</label>
 							<div class="col-md-9">
 								<div class="fileupload fileupload-new" data-provides="fileupload">
 									<div class="fileupload-new thumbnail" style="width: 160px; height: 160px;">

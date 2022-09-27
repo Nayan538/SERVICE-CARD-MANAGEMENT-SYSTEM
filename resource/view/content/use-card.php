@@ -8,6 +8,10 @@ include("app/Models/Eloquent.php");
 # CALLING MODEL / QUERY BUILDER
 $eloquent = new Eloquent;
 
+#### LOAD SERVICES DATA
+$columnName = "*";
+$tableName = "services";
+$serviceList = $eloquent->selectData($columnName, $tableName);
 
 # SAVE CUSTOMER #
 if(isset($_POST['try_card']))
@@ -83,26 +87,21 @@ if(isset($_POST['try_card']))
                             <div class="form-group ">
                                 <label for="ServiceTitle" class="control-label col-lg-2">Service Title</label>
                                 <div class="col-lg-7">
-                                    <select name="service_title" id="service_title" class="form-control" required>
-										<option value="">Select a Sarvice</option> 
-                                        <option value="Cleaning"> Cleaning </option>
-                                        <option value="Home Appliances"> Home Appliances </option>
-                                        <option value="Pack & Shift"> Pack & Shift </option>
-                                        <option value="Plumbing"> Plumbing </option>
-                                        <option value="Electrical"> Electrical </option>
-                                        <option value="Carpentry"> Carpentry </option>
-                                        <option value="Property Management"> Property Management </option>
-                                        <option value="Painting"> Painting </option>
-                                        <option value="Interior Solution"> Interior Solution </option>
-                                        <option value="Computer Servicing"> Computer Servicing </option>
-                                        <option value="Pest-Control"> Pest-Control </option>
+                                    <select name="service_title" id="service_title" class="form-control">
+                                        <option>Select a Service</option>
+										<?php
+											foreach($serviceList as $eachRow)
+											{
+												echo '<option value="'. $eachRow['id'] .'">'. $eachRow['service_name'] .'</option>' ;
+											}
+										?>
 									</select>
                                 </div>
                             </div>
                             <div class="form-group ">
                                 <label for="Amount" class="control-label col-lg-2">Amount</label>
                                 <div class="col-lg-7">
-                                    <input name="amount" type="number" class="form-control" id="amount" placeholder="Amount" required>
+                                    <input name="amount" type="number" class="form-control" id="amount" required>
                                 </div>
                             </div>
 
@@ -119,3 +118,44 @@ if(isset($_POST['try_card']))
         </div>
 	</div>
 </div>
+
+<!-- ---------- AJAX CODE TO LOAD SUBCATEGORY AGAINST CATEGORY ---------- -->
+<script src="public/js/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#service_title").change(function() {
+			
+            var srv_id = $(this).val();
+			
+            if(srv_id != "")
+			{
+                $.ajax({
+                    url:"ajax.php",
+                    data:{
+						ajax_create_service: "YES",
+						service_id:srv_id
+					},
+                    type:'POST',
+                    success:function(response) 
+					{
+                        var resp = $.trim(response);
+                        $("#amount").html(resp);
+
+                        if(resp == "")
+                            $("#amount").html();
+                    }
+                });
+            }
+            else 
+			{
+                $("#amount").html();
+            }
+        })
+    });
+</script>
+<script>
+function myFunction() {
+  var x = document.getElementById("service_title").value;
+  document.getElementById("amount").innerHTML = "Price: " + x;
+}
+</script>

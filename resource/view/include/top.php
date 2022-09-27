@@ -116,6 +116,8 @@
 								<ul class="sub-menu-list">
 								<li><a href="add-card.php">Add New Cards</a></li>
 								<li><a href="list-card.php">List Of Cards</a></li>
+								<li><a href="create-services.php">Services</a></li>
+								<li><a href="list-services.php">List Of Services</a></li>
 								<li><a href="Settings.php">Settings</a></li>
 								</ul>
 								</li>

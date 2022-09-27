@@ -63,7 +63,7 @@ if(isset($_POST['try_activation']))
 							{
 								echo '
 									<div class="alert alert-success">
-										 Successfully Active the Card. 
+                                    Card Activated Successfully. 
 									</div>
 								';
 							}
