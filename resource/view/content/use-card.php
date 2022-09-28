@@ -88,7 +88,7 @@ if(isset($_POST['try_card']))
                                 <label for="ServiceTitle" class="control-label col-lg-2">Service Title</label>
                                 <div class="col-lg-7">
                                     <select name="service_title" id="service_title" class="form-control">
-                                        <option>Select a Service</option>
+                                        <option value="" > Select a Service</option>
 										<?php
 											foreach($serviceList as $eachRow)
 											{
@@ -123,39 +123,35 @@ if(isset($_POST['try_card']))
 <script src="public/js/jquery-1.10.2.min.js"></script>
 <script>
     $(document).ready(function(){
-        $("#service_title").change(function() {
+        $("#service_title").on("change", function() {
 			
             var srv_id = $(this).val();
 			
             if(srv_id != "")
 			{
                 $.ajax({
-                    url:"ajax.php",
-                    data:{
-						ajax_create_service: "YES",
-						service_id:srv_id
+                    url : "ajax.php",
+                    data : {
+						ajax_create_service : "YES",
+						service_id : srv_id
 					},
-                    type:'POST',
+                    type :'POST',
+                    dataType : "JSON",
                     success:function(response) 
 					{
-                        var resp = $.trim(response);
-                        $("#amount").html(resp);
+                        console.log(response);
+                        var resp = $.trim(response[0].price);
+                        $("#amount").val(resp);
 
                         if(resp == "")
-                            $("#amount").html();
+                            $("#amount").val('');
                     }
                 });
             }
             else 
 			{
-                $("#amount").html();
+                $("#amount").val('');
             }
         })
     });
-</script>
-<script>
-function myFunction() {
-  var x = document.getElementById("service_title").value;
-  document.getElementById("amount").innerHTML = "Price: " + x;
-}
 </script>
