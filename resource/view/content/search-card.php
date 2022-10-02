@@ -79,7 +79,7 @@ if(isset($_POST['search_card']))
                                 <div class="col-lg-4">
                                     <input name="mobile_no" type="text" class="form-control" id="mobile_no" value="<?= $activationResult[0]['mobile_no']; ?>">
                                 </div>
-                                <label for="Balance" class="control-label col-lg-2">Balance</label>
+                                <label for="Balance" class="control-label col-lg-2">Balance (Tk.)</label>
                                 <div class="col-lg-4">
                                     <input name="balance" type="text" class="form-control" id="balance" value="<?= $totalCustomer*50 ?>">
                                 </div>

@@ -115,9 +115,9 @@
 								<li class="menu-list"><a href="#"><i class="fa fa-cogs"></i> <span><b>SETTINGS</b></span></a>
 								<ul class="sub-menu-list">
 								<li><a href="add-card.php">Add New Cards</a></li>
-								<li><a href="list-card.php">List Of Cards</a></li>
+								<li><a href="list-card.php">List of Cards</a></li>
 								<li><a href="create-services.php">Services</a></li>
-								<li><a href="list-services.php">List Of Services</a></li>
+								<li><a href="list-services.php">List of Services</a></li>
 								<li><a href="Settings.php">Settings</a></li>
 								</ul>
 								</li>
