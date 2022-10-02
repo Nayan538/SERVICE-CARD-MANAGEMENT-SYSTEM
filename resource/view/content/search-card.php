@@ -81,7 +81,7 @@ if(isset($_POST['search_card']))
                                 </div>
                                 <label for="Balance" class="control-label col-lg-2">Balance (Tk.)</label>
                                 <div class="col-lg-4">
-                                    <input name="balance" type="text" class="form-control" id="balance" value="<?= $totalCustomer*50 ?>">
+                                    <input name="balance" type="text" class="form-control" id="balance" value="<?= $activationResult[0]['balance'] ?>">
                                 </div>
                             </div>
 
