@@ -13,9 +13,23 @@ $columnName = "*";
 $tableName = "services";
 $serviceList = $eloquent->selectData($columnName, $tableName);
 
+
+
 # SAVE CUSTOMER #
 if(isset($_POST['try_card']))
 {  
+    $columnName = "*";
+    $tableName = "card_activation";
+    $whereValue["card_no"] = $_POST['use_card_no'];
+    $useCard = $eloquent->selectData($columnName, $tableName,$whereValue);
+    
+    $tableName = $columnValue = $whereValue =  null;
+	$tableName = "card_activation";
+	$columnValue["balance"] = ($useCard[0]['balance'] + 50 );
+	$whereValue["card_no"] = $_POST['use_card_no'];
+	$updateResult = $eloquent->updateData($tableName, $columnValue,$whereValue);
+
+    $tableName = $columnValue = $whereValue =  null;
     $tableName = "use_a_card";
 	$columnValue["use_card_no"] = $_POST['use_card_no'];
 	$columnValue["card_user_name"] = $_POST['card_user_name'];
@@ -99,7 +113,7 @@ if(isset($_POST['try_card']))
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="Amount" class="control-label col-lg-2">Amount</label>
+                                <label for="Amount" class="control-label col-lg-2">Amount (Tk.)</label>
                                 <div class="col-lg-7">
                                     <input name="amount" type="number" class="form-control" id="amount" required>
                                 </div>
