@@ -79,9 +79,16 @@ if(isset($_POST['search_card']))
                                 <div class="col-lg-4">
                                     <input name="mobile_no" type="text" class="form-control" id="mobile_no" value="<?= $activationResult[0]['mobile_no']; ?>">
                                 </div>
-                                <label for="Balance" class="control-label col-lg-2">Balance (Tk.)</label>
+                                <label for="Balance" class="control-label col-lg-2">Balance</label>
                                 <div class="col-lg-4">
                                     <input name="balance" type="text" class="form-control" id="balance" value="<?= $activationResult[0]['balance'] ?>">
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="col-lg-8">
+                                </div>
+                                <div class="col-lg-4">  
+                                <button type="submit" class="btn btn-success" onclick="popupFunc('use-card.php')">Redeem Amount</button>
                                 </div>
                             </div>
 
@@ -143,3 +150,9 @@ if(isset($_POST['search_card']))
         </div>
 	</div>
 </div>
+<script src="public/js/jquery-1.10.2.min.js"></script>
+<script>
+function popupFunc(url) {
+	popupWindow = window.open(url,'popupWindow','height=500,width=600,left=350,top=100')
+}
+</script>
