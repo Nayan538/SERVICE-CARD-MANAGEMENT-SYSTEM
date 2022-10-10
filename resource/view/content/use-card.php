@@ -18,6 +18,13 @@ $serviceList = $eloquent->selectData($columnName, $tableName);
 # SAVE CUSTOMER #
 if(isset($_POST['try_card']))
 {  
+    $columnValue = $tableName =  $whereValue =  null;
+    $columnName = "*";
+    $tableName = "services";
+    $whereValue["id"] = $_POST['service_title'];
+    $serviceId = $eloquent->selectData($columnName, $tableName,$whereValue);
+
+    $columnValue = $tableName =  $whereValue =  null;
     $columnName = "*";
     $tableName = "card_activation";
     $whereValue["card_no"] = $_POST['use_card_no'];
@@ -35,7 +42,7 @@ if(isset($_POST['try_card']))
 	$columnValue["card_user_name"] = $_POST['card_user_name'];
 	$columnValue["card_user_mobile_no"] = $_POST['card_user_mobile_no'];
     $columnValue["order_no"] = $_POST['order_no'];
-    $columnValue["service_title"] = $_POST['service_title'];
+    $columnValue["service_title"] = $serviceId[0]['service_name'];
     $columnValue["amount"] = $_POST['amount'];
 	$columnValue["service_date"] = date("Y-m-d H:i:s");
     $useCard = $eloquent->insertData($tableName, $columnValue);

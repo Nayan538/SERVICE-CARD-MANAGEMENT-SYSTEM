@@ -87,8 +87,9 @@ if(isset($_POST['search_card']))
                             <div class="form-group ">
                                 <div class="col-lg-8">
                                 </div>
-                                <div class="col-lg-4">  
-                                <button type="submit" class="btn btn-success" onclick="popupFunc('use-card.php')">Redeem Amount</button>
+                                <div class="col-lg-4">
+                                <input type="hidden" name="redeem_id" value="<?php echo $activationResult[0]['id']?>"/>
+                                <button  name="try_redeem" type="submit" class="btn btn-success"  onclick="popupFunc('create-redeem.php')">Redeem Amount</button>
                                 </div>
                             </div>
 
