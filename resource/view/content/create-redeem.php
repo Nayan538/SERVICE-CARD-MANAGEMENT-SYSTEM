@@ -1,36 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<link href="public/css/style.css" rel="stylesheet">
-		<link href="public/css/custom.css" rel="stylesheet">
+<?php
+# CALLING CONTROLLER
+include("app/Http/Controllers/Controller.php");
+include("app/Http/Controllers/HomeController.php");
 
-		<?php
-			## ===*=== [C]ALLING CONTROLLER ===*=== ##
-			include("app/Models/Eloquent.php");
+#### CALLING MODEL / QUERY BUILDER
+include("app/Models/Eloquent.php");
+# CALLING MODEL / QUERY BUILDER
+$eloquent = new Eloquent;
+	
 
-			$eloquent = new Eloquent;
-			
-            if( isset($_POST['try_redeem']) )
-        {
-        	$_SESSION['SMC_try_redeem_id'] = $_POST['redeem_id'];
-        
-        	$columnName = "*";
-        	$tableName = "card_activation";
-        	$whereValue["id"] = $_SESSION['SMC_try_redeem_id'];
-        	$queryResult = $eloquent->selectData($columnName, $tableName, @$whereValue);
-
-            echo '<pre>';
-            print_r($queryResult);
-            echo '</pre>';
-        }
-        		#### LOAD SERVICES DATA
-		$columnName = "*";
-		$tableName = "services";
-		$serviceList = $eloquent->selectData($columnName, $tableName);
-        
-
-
-		?>
+if(isset($_POST['search_card']))
+{
+    $columnName = $tableName = $whereValue = NULL;
+    $columnName = "*";
+    $tableName = "card_activation";
+    $whereValue["card_no"] = $_POST['search_card'];
+    $queryResult = $eloquent->selectData($columnName, $tableName,$whereValue);
+}
+### LOAD SERVICES DATA
+$columnName = "*";
+$tableName = "services";
+$serviceList = $eloquent->selectData($columnName, $tableName);
+?>
 
 
 	</head>
@@ -47,7 +38,16 @@
                 </header>
                 <div class="panel-body">  
                         <form class="cmxform form-horizontal" method="post" action="" enctype="multipart/form-data">
-							<div class="form-group">
+                        <div class="form-group">
+                                <label for="CardNo" class="control-label col-lg-2">Card Number</label>
+                                <div class="col-lg-3">
+                                    <input name="search_card" type="text" class="form-control" id="search_card" value="<?php if(isset($_GET['card_no'])){echo $_GET['card_no'];} ?>"> 
+                                </div>
+                                    <button name="try_search_card" type="submit" class="btn btn-success">Search</button>
+                        </div>	
+                        </form>
+                        <form class="cmxform form-horizontal" method="post" action="" enctype="multipart/form-data">
+                        <div class="form-group">
                                 <label for="CardNo" class="control-label col-lg-2">Card Number : </label>
                                 <div class="col-lg-7"> 
                                     <input name="use_card_no" type="text" class="form-control" id="use_card_no" value="<?php echo $queryResult[0]['card_no']?>">
@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group">
 								<label for="Balance" class="control-label col-lg-2">Balance</label>
-                                <div class="col-lg-4">
+                                <div class="col-lg-7">
                                     <input name="balance" type="text" class="form-control" id="balance" value="<?= $queryResult[0]['balance'] ?>">
                                 </div>
                             </div>

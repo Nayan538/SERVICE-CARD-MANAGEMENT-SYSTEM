@@ -4,7 +4,7 @@ include("app/Http/Controllers/View.php");
 $view = new View;
 
 $view->loadContent("include", "session");
-//$view->loadContent("include", "top");
+$view->loadContent("include", "top");
 $view->loadContent("content", "create-redeem");
-//$view->loadContent("include", "tail");
+$view->loadContent("include", "tail");
 ?>

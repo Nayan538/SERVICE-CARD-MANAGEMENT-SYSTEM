@@ -72,7 +72,7 @@
 								<li><a href="active-card.php"><i class="fa fa-plus-circle"></i> Active a Card </a></li>
 								<li><a href="use-card.php"><i class="fa fa-user"></i> Use a Card </a></li>
 								<li><a href="search-card.php"><i class="fa fa-search-plus"></i>Search a Card  </a></li>
-								<li><a href="referral-info-card.php"><i class="fa fa-heart"></i>Referrals Info </a></li>
+								<li><a href="create-redeem.php"><i class="fa fa-heart"></i>Redeem Amount </a></li>
 								</ul>
 								</li>
 								';
