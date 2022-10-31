@@ -82,7 +82,7 @@
 								echo '
 								<li class="menu-list"><a href="#"><i class="fa fa-group"></i><b><span> CUSTOMER </b></span></a>
 								<ul class="sub-menu-list">
-								<li><a href="customer-list.php">Customer List Profile  </a></li>
+								<li><a href="customer-list.php">Customer List </a></li>
 								</ul>
 								</li>
 								';

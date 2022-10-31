@@ -21,11 +21,32 @@ if(isset($_POST['search_card']))
 }
 if(isset($_POST['try_redeem']))
 {
+    $columnValue = $tableName =  $whereValue =  null;
+    $columnName = "*";
+    $tableName = "services";
+    $whereValue["id"] = $_POST['service_title'];
+    $serviceId = $eloquent->selectData($columnName, $tableName,$whereValue);
+
+    if($_POST['balance'] >= $_POST['redeem_amount'])
+    {
     $tableName = $columnValue = $whereValue =  null;
     $tableName = "card_activation";
     $columnValue["balance"] = ($_POST['balance'] - $_POST['redeem_amount']);
     $whereValue["card_no"] = $_POST['use_card_no'];
     $updateResult = $eloquent->updateData($tableName, $columnValue,$whereValue);
+
+    $tableName = $columnValue = $whereValue = NULL;
+	$tableName = "redeem";
+	$columnValue["use_card_no"] = $_POST['use_card_no'];
+	$columnValue["customer_name"] = $_POST['customer_name'];
+	$columnValue["service_title"] = $serviceId[0]['service_name'];    
+	$columnValue["amount"] = $_POST['redeem_amount'];    
+	$saveRedeem = $eloquent->insertData($tableName, $columnValue);
+}
+else
+{
+    echo "<div class='alert alert-danger'><b>Please recheck Redeem Amount.</b></div>";
+}
 }
 ### LOAD SERVICES DATA
     $columnName = "*";
@@ -49,6 +70,19 @@ if(isset($_POST['try_redeem']))
 					Redeem Amount
                 </header>
                 <div class="panel-body">  
+                     <?php 
+						if(isset($_POST['try_redeem']))
+						{
+							if($saveRedeem['NO_OF_ROW_INSERTED'])
+							{
+								echo '
+									<div class="alert alert-success">
+                                    Redeem Amount Successfully. 
+									</div>
+								';
+							}
+						}
+						?>
                         <form class="cmxform form-horizontal" method="post" action="" enctype="multipart/form-data">
                         <div class="form-group">
                                 <label for="CardNo" class="control-label col-lg-2">Card Number</label>
@@ -59,10 +93,16 @@ if(isset($_POST['try_redeem']))
                         </div>	
                         </form>
                         <form class="cmxform form-horizontal" method="post" action="" enctype="multipart/form-data">
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="CardNo" class="control-label col-lg-2">Card Number : </label>
                                 <div class="col-lg-7"> 
                                     <input name="use_card_no" type="text" class="form-control" id="use_card_no" value="<?php echo $queryResult[0]['card_no']?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="CardNo" class="control-label col-lg-2">Customer Name : </label>
+                                <div class="col-lg-7"> 
+                                    <input name="customer_name" type="text" class="form-control" id="customer_name" value="<?php echo $queryResult[0]['customer_name']?>">
                                 </div>
                             </div>
                             <div class="form-group">
