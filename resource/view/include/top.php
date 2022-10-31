@@ -80,6 +80,16 @@
 							if($_SESSION['SMC_login_admin_type'] == "Root Admin" || $_SESSION['SMC_login_admin_type'] == "Sales Manager")
 							{
 								echo '
+								<li class="menu-list"><a href="#"><i class="fa fa-group"></i><b><span> CUSTOMER </b></span></a>
+								<ul class="sub-menu-list">
+								<li><a href="customer-list.php">Customer List Profile  </a></li>
+								</ul>
+								</li>
+								';
+							}
+							if($_SESSION['SMC_login_admin_type'] == "Root Admin" || $_SESSION['SMC_login_admin_type'] == "Sales Manager")
+							{
+								echo '
 								<li class="menu-list"><a href="#"><i class="fa fa-folder-open"></i><b><span>MY PROFILE</b></span></a>
 								<ul class="sub-menu-list">
 								<li><a href="my-profile.php">My Profile  </a></li>
@@ -93,7 +103,8 @@
 								echo '
 								<li class="menu-list"><a href="#"><i class="fa fa-th"></i> <span><b>REPORTS</b></span></a>
 								<ul class="sub-menu-list">
-								<li><a href="report.php">Reports  </a></li>
+								<li><a href="card-history.php">Card Ueses History</a></li>
+								<li><a href="redeem-history.php">Redeem Amount History  </a></li>
 								</ul>
 								</li>
 								';

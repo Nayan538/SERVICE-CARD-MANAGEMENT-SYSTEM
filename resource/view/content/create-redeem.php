@@ -8,6 +8,7 @@ include("app/Models/Eloquent.php");
 # CALLING MODEL / QUERY BUILDER
 $eloquent = new Eloquent;
 	
+error_reporting(E_ERROR | E_PARSE);
 
 if(isset($_POST['search_card']))
 {
@@ -16,11 +17,22 @@ if(isset($_POST['search_card']))
     $tableName = "card_activation";
     $whereValue["card_no"] = $_POST['search_card'];
     $queryResult = $eloquent->selectData($columnName, $tableName,$whereValue);
+
+}
+if(isset($_POST['try_redeem']))
+{
+    $tableName = $columnValue = $whereValue =  null;
+    $tableName = "card_activation";
+    $columnValue["balance"] = ($_POST['balance'] - $_POST['redeem_amount']);
+    $whereValue["card_no"] = $_POST['use_card_no'];
+    $updateResult = $eloquent->updateData($tableName, $columnValue,$whereValue);
 }
 ### LOAD SERVICES DATA
-$columnName = "*";
-$tableName = "services";
-$serviceList = $eloquent->selectData($columnName, $tableName);
+    $columnName = "*";
+    $tableName = "services";
+    $serviceList = $eloquent->selectData($columnName, $tableName);
+
+
 ?>
 
 
@@ -82,7 +94,7 @@ $serviceList = $eloquent->selectData($columnName, $tableName);
 							<div class="form-group ">
                                 <label for="Amount" class="control-label col-lg-2">Redeem Amount (Tk.)</label>
                                 <div class="col-lg-7">
-                                    <input name="amount" type="number" class="form-control" id="amount" required>
+                                    <input name="redeem_amount" type="number" class="form-control" id="redeem_amount" required>
                                 </div>
                             </div>
 
@@ -90,7 +102,7 @@ $serviceList = $eloquent->selectData($columnName, $tableName);
                         <br/>
                             <div class="form-group">
                                 <div for="submit" class="control-label col-lg-6">
-                                    <button name="try_card" type="submit" class="btn btn-success"><b>Confirm Redeem</b></button>
+                                    <button name="try_redeem" type="submit" class="btn btn-success"><b>Confirm Redeem</b></button>
                                 </div>
                             </div><!-- End .form-footer -->
                         </form>
