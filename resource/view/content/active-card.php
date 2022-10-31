@@ -10,6 +10,13 @@ $eloquent = new Eloquent;
 
 error_reporting(E_ERROR | E_PARSE);
 
+    $columnName = "*";
+    $tableName = "card_activation";
+    $activeResult = $eloquent->selectData($columnName, $tableName);
+    echo "<pre>";
+   print_r($activeResult['card_no']);
+   echo "</pre>";
+
 # SAVE CUSTOMER #
 if(isset($_POST['try_activation']))
 {
@@ -21,14 +28,17 @@ if(isset($_POST['try_activation']))
 
     if($totalCard != 0)
     {
-    $tableName = $columnValue = $whereValue = NULL;
-	$tableName = "card_activation";
-	$columnValue["card_no"] = $_POST['card_no'];
-	$columnValue["customer_name"] = $_POST['customer_name'];
-	$columnValue["mobile_no"] = $_POST['mobile_no'];
-	$columnValue["activation_date"] = date("Y-m-d H:i:s");
-	$columnValue["activated_by"] = $_SESSION['SMC_login_admin_name'];
-	$saveActivation = $eloquent->insertData($tableName, $columnValue);
+        if($activeResult['card_no'] != $_POST['card_no'])
+        {
+            $tableName = $columnValue = $whereValue = NULL;
+	        $tableName = "card_activation";
+	        $columnValue["card_no"] = $_POST['card_no'];
+	        $columnValue["customer_name"] = $_POST['customer_name'];
+	        $columnValue["mobile_no"] = $_POST['mobile_no'];
+	        $columnValue["activation_date"] = date("Y-m-d H:i:s");
+	        $columnValue["activated_by"] = $_SESSION['SMC_login_admin_name'];
+	        $saveActivation = $eloquent->insertData($tableName, $columnValue);
+        }
     }
     else
     {
