@@ -10,16 +10,17 @@ $eloquent = new Eloquent;
 
 error_reporting(E_ERROR | E_PARSE);
 
-    $columnName = "*";
-    $tableName = "card_activation";
-    $activeResult = $eloquent->selectData($columnName, $tableName);
-    echo "<pre>";
-   print_r($activeResult['card_no']);
-   echo "</pre>";
-
 # SAVE CUSTOMER #
 if(isset($_POST['try_activation']))
 {
+    $columnValue = $tableName = $whereValue = NULL;
+    $columnName = "*";
+    $tableName = "card_activation";
+    $whereValue["card_no"] = $_POST['card_no'];
+    $activeResult = $eloquent->selectData($columnName, $tableName,$whereValue);
+    $active = count($activeResult);
+
+    $columnValue = $tableName = $whereValue = NULL;
     $columnName = "*";
     $tableName = "add_card";
     $whereValue["card_no"] = $_POST['card_no'];
@@ -28,7 +29,7 @@ if(isset($_POST['try_activation']))
 
     if($totalCard != 0)
     {
-        if($activeResult['card_no'] != $_POST['card_no'])
+        if($active == 0)
         {
             $tableName = $columnValue = $whereValue = NULL;
 	        $tableName = "card_activation";
@@ -39,6 +40,11 @@ if(isset($_POST['try_activation']))
 	        $columnValue["activated_by"] = $_SESSION['SMC_login_admin_name'];
 	        $saveActivation = $eloquent->insertData($tableName, $columnValue);
         }
+        else
+    {
+        echo "<div class='alert alert-danger'><b>Card Number Already Activated! Please recheck Card Number.</b></div>";
+    }
+
     }
     else
     {
